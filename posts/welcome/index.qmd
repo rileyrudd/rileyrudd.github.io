@@ -9,4 +9,44 @@ This is the first post in a Quarto blog. Welcome!
 
 ![](thumbnail.jpg)
 
-Since this post doesn't specify an explicit `image`, the first image in the post will be used in the listing page of posts.
+Machine Learning Blog Posts
+
+Blog 1 - Probability theory and random variables
+
+Probability theory is the mathematical study of uncertainty, quantifying uncertainty about the world. It is important to understand as a basis to machine learning, because the design of learning algorithms often relies on probabilistic assumptions about the data. Probability theory allows algorithms to reason effectively in situations where there cannot be certainty.
+
+Random Variables:
+
+                Random variables are at the core of probability theory, they are a variable whose value is determined by the outcome of a random process. They can be discrete, taking a specific value from a finite set, or continuous, having any value in a range. In Machine learning, random variables often represent the input features, output predictions, or latent variables in the model.
+
+Dependent and Independent events
+
+                Events are called independent if the probability of one event does not influence the other, such as flipping a coin and getting heads twice in a row.
+
+Multiple views on Probability Theory
+
+Bayesian Probability
+
+                The Bayesian view of probability contrasts frequentist probability in the sense that the latter relies on the existence of one best combination of parameters. The Bayesian probability treats parameters as random variables. Therefore, each parameter has its own probability distribution.
+
+Frequentist Probability
+
+                If you are counting how often particular events occur, such as the percentage a coin flip will land on heads versus tails, you are taking a frequentist view of the probabilities. The frequency to which a coin will land on heads or tails is a probability
+
+Conditional Probability
+
+                When looking at the probability of one event due to another, this is conditional probability. One example is \"what is the probability of a car crash when there is rain?\"
+
+Dependent and Independent events
+
+                One event is called independent if the probability of one event does not influence the other.
+
+Applications in Machine Learning
+
+-          Data Modeling: machine learning models often work by using data that has randomness/uncertainty. Random variables are used to quantify this uncertainty, allowing for the development of models.
+
+-          Bayesian inference: Bayesian methods are used in machine learning for decision-making involving uncertainty. These methods leverage probability theory and random variables to update predicitons when new data is available.
+
+-          Classification: in classification models, where we assign data to specific categories, random variables can be used to represent the uncertainty with each class assignment.
+
+-          Reinforcement learning: In reinforcement learning, an agent interacts with an environment to learn optimal actions -- random variables are used to represent rewards and consequences, helping the user to make decisions under uncertain circumstances.
