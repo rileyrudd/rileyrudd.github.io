@@ -1,52 +1,90 @@
 ---
-title: "Welcome To My Blog"
-author: "Tristan O'Malley"
+title: "Understanding the Foundations: Probability Theory and Random Variables in Machine Learning"
+author: "Riley Rudd"
 date: "2023-10-16"
-categories: [news]
+categories: [machine learning]
 ---
-
-This is the first post in a Quarto blog. Welcome!
-
-![](thumbnail.jpg)
-
-Machine Learning Blog Posts
-
-Blog 1 - Probability theory and random variables
 
 Probability theory is the mathematical study of uncertainty, quantifying uncertainty about the world. It is important to understand as a basis to machine learning, because the design of learning algorithms often relies on probabilistic assumptions about the data. Probability theory allows algorithms to reason effectively in situations where there cannot be certainty.
 
-Random Variables:
+### Random Variables
 
-                Random variables are at the core of probability theory, they are a variable whose value is determined by the outcome of a random process. They can be discrete, taking a specific value from a finite set, or continuous, having any value in a range. In Machine learning, random variables often represent the input features, output predictions, or latent variables in the model.
+Random variables are at the core of probability theory, they are a variable whose value is determined by the outcome of a random process. They can be discrete, taking a specific value from a finite set, or continuous, having any value in a range. In Machine learning, random variables often represent the input features, output predictions, or latent variables in the model.
 
-Dependent and Independent events
+### Multiple views on Probability Theory
 
-                Events are called independent if the probability of one event does not influence the other, such as flipping a coin and getting heads twice in a row.
+We can divide probability theory into two main branches:
 
-Multiple views on Probability Theory
+-   Classical probability: based on equally likely outcomes in a sample space. As an example, when flipping a coin, the probability of getting either heads or tails is 1/2
 
-Bayesian Probability
+-   Bayesian probability: The Bayesian view of probability contrasts frequentist probability in the sense that the latter relies on the existence of one best combination of parameters. The Bayesian probability treats parameters as random variables. Therefore, each parameter has its own probability distribution.
 
-                The Bayesian view of probability contrasts frequentist probability in the sense that the latter relies on the existence of one best combination of parameters. The Bayesian probability treats parameters as random variables. Therefore, each parameter has its own probability distribution.
+### Applications in Machine Learning
 
-Frequentist Probability
+-   Data Modeling: machine learning models often work by using data that has randomness/uncertainty. Random variables are used to quantify this uncertainty, allowing for the development of models.
 
-                If you are counting how often particular events occur, such as the percentage a coin flip will land on heads versus tails, you are taking a frequentist view of the probabilities. The frequency to which a coin will land on heads or tails is a probability
+-   Bayesian inference: Bayesian methods are used in machine learning for decision-making involving uncertainty. These methods leverage probability theory and random variables to update predictions when new data is available.
 
-Conditional Probability
+-   Classification: in classification models, where we assign data to specific categories, random variables can be used to represent the uncertainty with each class assignment.
 
-                When looking at the probability of one event due to another, this is conditional probability. One example is \"what is the probability of a car crash when there is rain?\"
+-   Reinforcement learning: In reinforcement learning, an agent interacts with an environment to learn optimal actions -- random variables are used to represent rewards and consequences, helping the user to make decisions under uncertain circumstances.
 
-Dependent and Independent events
+### Probability Theory in Action
 
-                One event is called independent if the probability of one event does not influence the other.
+Let's check out a hands-on example using a Gaussian Naive Bayes classifier. This probabilistic model is used for classification tasks and is based on Bayes' theorem. This algorithm does well in predicting the correct class the features belong to, it considers the probability of occurrence of each class and assigns the label value to the class with the higher probability.
 
-Applications in Machine Learning
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import make_classification
+from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import accuracy_score
 
--          Data Modeling: machine learning models often work by using data that has randomness/uncertainty. Random variables are used to quantify this uncertainty, allowing for the development of models.
+# Generate a synthetic dataset
+X, y = make_classification(n_samples=1000, n_features=2, n_informative=2, n_redundant=0, random_state=42)
 
--          Bayesian inference: Bayesian methods are used in machine learning for decision-making involving uncertainty. These methods leverage probability theory and random variables to update predicitons when new data is available.
+# Split the dataset into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=32)
 
--          Classification: in classification models, where we assign data to specific categories, random variables can be used to represent the uncertainty with each class assignment.
+# Train a Gaussian Naive Bayes classifier
+model = GaussianNB()
+model.fit(X_train, y_train)
 
--          Reinforcement learning: In reinforcement learning, an agent interacts with an environment to learn optimal actions -- random variables are used to represent rewards and consequences, helping the user to make decisions under uncertain circumstances.
+# Make predictions on the test set
+y_pred = model.predict(X_test)
+
+# Calculate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f'The Accuracy of Prediction is: {accuracy:.2f}')
+
+```
+
+In this code chunk, we've generated a synthetic data set, split it into a training and testing set, then trained a Gaussian Naive Bayes classifier instance on the data, and printing the accuracy of prediction.
+
+### Visualizing Probabilistic Predictions
+
+Now, let's visualize the probabilistic natures of the Gaussian Naive Bayes predictions using a probability density function (PDF) plot.
+
+```{python}
+# Visualize decision regions and probabilities
+x_min, x_max = X[:, 0].min() - 1, X[:, 0].max() + 1
+y_min, y_max = X[:, 1].min() - 1, X[:, 1].max() + 1
+xx, yy = np.meshgrid(np.arange(x_min, x_max, 0.01), np.arange(y_min, y_max, 0.01))
+
+probs = model.predict_proba(np.c_[xx.ravel(), yy.ravel()])[:, 1].reshape(xx.shape)
+
+plt.contourf(xx, yy, probs, cmap="bwr", alpha=0.8)
+plt.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap="bwr", edgecolors="k", marker="o", s=80, linewidth=1)
+
+plt.title("Gaussian Naive Bayes: Probability Density Function")
+plt.xlabel("Feature 1")
+plt.ylabel("Feature 2")
+plt.show()
+```
+
+In this visualization, decision regions are plotted based on probabilistic predictions of the model. The scatter plot shows the test set points, color-coded by true class labels.
+
+### **Conclusion**
+
+Probability theory is not just a theoretical concept; it forms the backbone of practical machine learning applications. By understanding and leveraging probability theory, we can build models that provide not only predictions but also quantify the uncertainty associated with those predictions. The Gaussian Naive Bayes example showcased here is just one instance of how probability theory seamlessly integrates into machine learning workflows, allowing for robust and informed decision-making.
