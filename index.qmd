@@ -12,23 +12,23 @@ about:
       href: https://github.com/rileyrudd
 ---
 
-Hey there, thanks for stopping by my blog! I'm Riley Rudd, and I'm excited to have you here. This blog is all about sharing experiences, insights, and everything in-between. My interests are all over the place, so this is an opportunity for me to present myself in a more thorough way than a resume, while also sharing some detailed experiences/knowledge that may be helpful for others. If you'd like to see my resume, I've linked it at the top of my page - otherwise, let's skip the formalities and get to know me a bit better.
+Thanks for stopping by my website! This blog is all about sharing experiences, insights, and everything in-between. My interests are all over the place, so this is an opportunity for me to present myself in a more thorough way than a resume, while also sharing some detailed experiences/knowledge that may be helpful for others. If you'd like to see my resume, I've linked it at the top of my page - otherwise, let's dive into some details about myself.
 
-How to reach me: Feel free to drop me an email at riley.rudd1\@gmail.com, or check out my linkedin profile.
+#### How to reach me: Feel free to drop me an email at riley.rudd1\@gmail.com, or check out my linkedin profile.
 
-The Journey So Far:
+#### The Journey So Far:
 
 Let's jump into my academic background and a few life tidbits:
 
-Master of Engineering in Computer Science - Data Analytics & AI: Currently, I'm continuing my academic adventure at Virginia Tech, pursuing a graduate degree in Data Analytics and Artificial Intelligence. It's been really interesting experience, and I can't wait to share some of the cool stuff I've been learning with you. My expected graduation date? December 2024.
+Master of Engineering in Computer Science - Data Analytics & AI: Currently, I'm continuing my academic adventure at Virginia Tech, pursuing a graduate degree in Data Analytics and Artificial Intelligence. It's been really interesting experience, and I can't wait to share some of the cool stuff I've been learning with you. My expected graduation date is December 2024.
 
-Bachelor of Arts in Economics: I earned my Bachelor of Arts in Economics from Virginia Tech in May 2023. I originally didn't expect to enjoy learning about economics, but I had a great professor during a Principles of Economics class that inspired my interests in economics.
+Bachelor of Arts in Economics - I earned my Bachelor of Arts in Economics, magna cum laude, from Virginia Tech in May 2023. I originally didn't expect to enjoy learning about economics, but I had a great professor during a Principles of Economics class that inspired my interests in economics.
 
-Bachelor of Science in Consumer Studies - Financial Services & Counseling: Fortunately, I had the room in my schedule to fit in a double-major in Consumer Studies. This degree was much more applied knowledge, and led me to becoming President (and Founder) of the Consumer Studies Student Organization. Specializing in financial services and counseling adds a whole new dimension to my life and education.
+Bachelor of Science in Consumer Studies - Financial Services & Counseling - Fortunately, I had the room in my schedule to fit in a double-major in Consumer Studies. This degree was much more applied knowledge, and led me to becoming President (and Founder) of the Consumer Studies Student Organization. Specializing in financial services and counseling adds a whole new dimension to my life and education. I was also awarded the 2023 Outstanding Senior award for this major.
 
-My areas of study may seem a little random, but actually, having a broader background has helped me in every professional experience I've had. My master's degree has helped me build immense technical skill in computer science while still having applied understanding of business and government through Consumer Studies, all wrapped up with the theoretical understanding of economics.
+My areas of study may seem a little scattered, but actually, having a broader background has helped me in every professional experience I've had. My master's degree has helped me build immense technical skill in computer science while still having applied understanding of business and government through Consumer Studies, all wrapped up with the theoretical understanding of economics.
 
-Beyond Textbooks:
+#### Beyond Textbooks:
 
 Besides the academic journey, I've had a blast doing some other cool stuff:
 
@@ -36,7 +36,7 @@ Founder and President of the Virginia Tech Consumer Studies Organization: I work
 
 Getting My Research Hands Dirty: I've also dipped my toes into some meaningful research projects. One of them, "Sensing Drought in the Sahel for Household Resilience," was published by the University of Virginia Biocomplexity Institute. It was a deep dive into real-world climate resilience. This experience was really transformational in my academic career, inspiring me to pursue a Masters degree in Computer Science. I would love future opportunities to use data science for public good.
 
-Professional Adventures:
+#### Professional Adventures:
 
 Marketing Specialist at TriMech: I'm currently working for TriMech, marketing for our Staffing and Project Engineering teams, juggling various marketing tactics to generate leads and make an impact. I feel a lot of trust with my team at TriMech, and it's allowed me to build confidence in a wide variety of skills. Our video marketing project won the 2022 SolidWorks Reseller "Best Digital Media Adopt" award. Plus, I'm super proud to be an "Impact Player" as part of the "President's Club" in 2023.
 
@@ -44,7 +44,7 @@ Research Assistant: My work as a Research Assistant was all about working with d
 
 Young Scholars Research Intern: I worked on the "Data Science for the Public Good" project, using data analysis skills to inform financial donor decisions. This program was really my introduction to data science, and I am so grateful to have been a part of it. I am still close with some of the other interns to this day!
 
-Beyond the Resume:
+#### Beyond the Resume:
 
 Aside from my work and studies, I'm an avid reader of many topics, but mostly enjoy reading as an escape of reality when needed. To balance out all that brainwork, I've also been playing rugby since 2019.
 
