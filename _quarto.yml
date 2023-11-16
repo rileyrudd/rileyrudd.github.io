@@ -6,20 +6,23 @@ website:
   title: "Riley Rudd"
   navbar:
     right:
-      - text: Blogs
+#     - text: Blogs
       - href: blog.qmd
+      - text: Resume
+        href: riley-rudd-2023
       - icon: github
         href: https://github.com/rileyrudd
-      - text: Articles
-        menu: 
-          - All posts
-          - Machine Learning
-      - icon: Linkedin
+#     - text: Articles
+#        menu: 
+#          - All posts
+#          - Machine Learning
+      - icon: LinkedIn
         href: "https://www.linkedin.com/in/riley-rudd-1166a3192/"
 
 format:
   html:
-    theme: journal
+    theme: lumen
+    #theme: morph#theme: minty, lumen
     css: styles.css
 
 editor: visual

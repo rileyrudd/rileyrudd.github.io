@@ -1,6 +1,6 @@
 ---
 title: "About Riley"
-image: profile-riley.jpg
+image: gg.jpg
 about:
   template: jolla
   links:
