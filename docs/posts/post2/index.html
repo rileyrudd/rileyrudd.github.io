@@ -184,14 +184,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>Clustering is a type of unsupervised learning method, meaning conclusions are drawn about datasets without labeled responses. It is the unsupervised version of classification. It is done by grouping a particular set of objects based on their characteristics, aggregating them by their similarities. Clustering is generally used to find meaningful structure, underlying processes, and grouping inherent in a set of examples. Clustering can be thought of like organizing music by genre, something we all do naturally. Consider the example of going a bit further, such as organizing EDM music by type and considering how different countries have influenced each sub-genre. By using clustering, you’ve learned something about your data.</p>
+<p>Clustering is a type of unsupervised learning method, meaning conclusions are drawn about datasets without labeled responses. It is done by grouping a particular set of points based on their characteristics, aggregating them by their similarities. Clustering is generally used to find meaningful structure, underlying processes, and grouping inherent in a set of examples. Clustering can be thought of like organizing music by genre, something we all do naturally. By using clustering, you can learn something about your data previously unknown or invisible.</p>
 <section id="why-use-clustering" class="level3">
 <h3 class="anchored" data-anchor-id="why-use-clustering">Why Use Clustering?</h3>
-<p>Real world examples are very complex and can be difficult to categorize. When you need to answer questions about this data, it is necessary to understand patterns within your data. Clustering can be useful in many industries. A few common examples include: anomaly detection, medical imaging, and market segmentation. Consider the example of using clustering for data compression. Replacing feature data for cluster ID will simplify the dataset and saves storage – which is a significant benefit when considering large datasets. This allows for faster and simpler training of machine learning models.</p>
-</section>
-<section id="how-is-clustering-achieved" class="level3">
-<h3 class="anchored" data-anchor-id="how-is-clustering-achieved">How is Clustering Achieved?</h3>
-<p>To start, features in the dataset must all be numerically represented. If one of your features includes a “review” such as with ecommerce sites, you would need to define that review numerically, such as representing positive reviews with 0s and negative reviews with 1s. The first step is to find datapoints with similar features. Measuring similarity can be done by combining the data points’ feature data into a metric called similarity measure. After clustering, each cluster receives a number called a cluster ID. Once the clusters are defined on a plane with however many axes as you have features, the distance between two points represents their similarity. One goal of clustering is to minimize inter-cluster similarity. This means that points in two different clusters should be as far apart (eg. different) as possible.</p>
+<p>Real world examples are very complex and can be difficult to categorize. When you need to answer questions about this data, it is necessary to understand patterns within your data. Some patterns are easily visible to the eye, such as groups of height and weight points on a x and y axis. However, when there are many dimensions, it is impossible to visualize this on a 2D scale and therefore not possible to see by eye. Clustering can be useful in many industries. A few common examples include: anomaly detection, medical imaging, and market segmentation. Consider the example of using clustering for data compression. Replacing feature data for cluster ID will simplify the dataset and saves storage – which is a significant benefit when considering large datasets. This allows for faster and simpler training of machine learning models.</p>
 </section>
 <section id="clustering-methods" class="level3">
 <h3 class="anchored" data-anchor-id="clustering-methods">Clustering Methods</h3>
@@ -210,31 +206,99 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Handling High-Dimensional Data: clustering high dimensional data can be complex, requiring dimensionality reduction techniques to improve the algorithm’s performance.</p></li>
 </ul>
 </section>
+<section id="how-is-clustering-achieved-with-dbscan" class="level3">
+<h3 class="anchored" data-anchor-id="how-is-clustering-achieved-with-dbscan">How is Clustering Achieved with DBSCAN?</h3>
+<p>To start, features in the dataset must all be numerically represented. If one of your features includes a “review” such as with ecommerce sites, you would need to define that review numerically, such as representing positive reviews with 0s and negative reviews with 1s. Then, the user will define a few parameters. One goal of clustering is to minimize inter-cluster similarity. This means that points in two different clusters should be as far apart (eg. different) as possible. The most important is determining the maximum distance between two points for one to be considered in the neighborhood of another. Another parameter is the minimum number of points in a neighborhood for a point to be considered a core point. If you choose a higher number, the resulting clusters will be more dense, and lower numbers result in clusters that are more sparse.</p>
+<p>DBSCAN will then begin with a point to determine where the core points are, adding each core point into a cluster if they are in the same neighborhood. Then, it will add the non-core points, which are points in the same neighborhood as core points, but do not have enough members in the neighborhood to further extend the cluster. DBSCAN moves sequentially through each cluster until all points fall into a cluster or an outlier.</p>
+</section>
 <section id="deeper-dive-into-clustering" class="level3">
 <h3 class="anchored" data-anchor-id="deeper-dive-into-clustering">Deeper Dive into Clustering</h3>
+<p>We can begin by creating a synthetic dataset that will look like 3 distinct blobs.</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> DBSCAN</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">0</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> np.random.rand(<span class="dv">100</span>, <span class="dv">2</span>)  <span class="co"># 100 points in 2D space</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply DBSCAN</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>dbscan <span class="op">=</span> DBSCAN(eps<span class="op">=</span><span class="fl">0.3</span>, min_samples<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> dbscan.fit_predict(data)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> make_blobs</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#generate syntetic clusters</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>centers <span class="op">=</span> [[<span class="dv">1</span>,<span class="dv">1</span>], [<span class="op">-</span><span class="dv">1</span>,<span class="op">-</span><span class="dv">2</span>], [<span class="dv">2</span>,<span class="dv">3</span>]]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>X, labels_true <span class="op">=</span> make_blobs(n_samples<span class="op">=</span><span class="dv">750</span>, centers<span class="op">=</span>centers, cluster_std<span class="op">=</span><span class="fl">0.4</span>, random_state<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> StandardScaler().fit_transform(X)</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Visualize the clusters</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.scatter(data[:, <span class="dv">0</span>], data[:, <span class="dv">1</span>], c<span class="op">=</span>labels, cmap<span class="op">=</span><span class="st">'viridis'</span>, marker<span class="op">=</span><span class="st">'o'</span>, s<span class="op">=</span><span class="dv">50</span>, edgecolors<span class="op">=</span><span class="st">'k'</span>)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'DBSCAN Clustering of Geographical Music Preferences'</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Latitude'</span>)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Longitude'</span>)</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">#visualizing data</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.scatter(X[:,<span class="dv">0</span>], X[:,<span class="dv">1</span>])</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<p><img src="index_files/figure-html/cell-2-output-1.png" width="589" height="449"></p>
+<p><img src="index_files/figure-html/cell-2-output-1.png" width="582" height="411"></p>
+</div>
+</div>
+<p>Next, we will compute DBSCAN, printing the number of clusters and noise points, and finally visualizing where DBSCAN has identified clusters. In the plot, core points are larger than non-core points and color coded according to cluster. Noise samples are in black.</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> metrics</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> DBSCAN</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># computer DBSCAN</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>db <span class="op">=</span> DBSCAN(eps<span class="op">=</span><span class="fl">0.2</span>, min_samples<span class="op">=</span><span class="dv">10</span>).fit(X)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> db.labels_</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># see how many clusters and noise points</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>n_clusters <span class="op">=</span> <span class="bu">len</span>(<span class="bu">set</span>(labels)) <span class="op">-</span> (<span class="dv">1</span> <span class="cf">if</span> <span class="op">-</span><span class="dv">1</span> <span class="kw">in</span> labels <span class="cf">else</span> <span class="dv">0</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>n_noise <span class="op">=</span> <span class="bu">list</span>(labels).count(<span class="op">-</span><span class="dv">1</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of clusters: </span><span class="sc">%d</span><span class="st">"</span> <span class="op">%</span> n_clusters)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Number of noise points: </span><span class="sc">%d</span><span class="st">"</span> <span class="op">%</span> n_noise)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="co">#visualize clusters </span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>unique_labels <span class="op">=</span> <span class="bu">set</span>(labels)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>core_samples_mask <span class="op">=</span> np.zeros_like(labels, dtype<span class="op">=</span><span class="bu">bool</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>core_samples_mask[db.core_sample_indices_] <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [plt.cm.Spectral(each) <span class="cf">for</span> each <span class="kw">in</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="bu">len</span>(unique_labels))]</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k, col <span class="kw">in</span> <span class="bu">zip</span>(unique_labels, colors):</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> k <span class="op">==</span> <span class="op">-</span><span class="dv">1</span>:</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Black used for noise.</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>        col <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>]</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>    class_member_mask <span class="op">=</span> labels <span class="op">==</span> k</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    xy <span class="op">=</span> X[class_member_mask <span class="op">&amp;</span> core_samples_mask]</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>    plt.plot(</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        xy[:, <span class="dv">0</span>],</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        xy[:, <span class="dv">1</span>],</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="st">"o"</span>,</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>        markerfacecolor<span class="op">=</span><span class="bu">tuple</span>(col),</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>        markeredgecolor<span class="op">=</span><span class="st">"k"</span>,</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        markersize<span class="op">=</span><span class="dv">14</span>,</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>    xy <span class="op">=</span> X[class_member_mask <span class="op">&amp;</span> <span class="op">~</span>core_samples_mask]</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>    plt.plot(</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>        xy[:, <span class="dv">0</span>],</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        xy[:, <span class="dv">1</span>],</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        <span class="st">"o"</span>,</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        markerfacecolor<span class="op">=</span><span class="bu">tuple</span>(col),</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        markeredgecolor<span class="op">=</span><span class="st">"k"</span>,</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        markersize<span class="op">=</span><span class="dv">6</span>,</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Estimated number of clusters: </span><span class="sc">{</span>n_clusters<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Number of clusters: 3
+Number of noise points: 17</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<p><img src="index_files/figure-html/cell-3-output-2.png" width="582" height="431"></p>
 </div>
 </div>
 <p>In this example, the dataset is hypothetically assumed to be about geographical music preferences. If it were a real data set, it may have been geographical locations with other features such as tempo, energy level, and beat pattern. DBSCAN identifies clusters of data points that are dense and well connected. The parameters for DBSCAN are “eps” which defines the maximum distance between samples to be considered near another, and “min_samples” which sets the number of samples in a neighborhood for a data point to be considered a core point. Next, DBSCAN will begin with an arbitrary point and expand the cluster by adding nearby points if they are densely packed. It will continue until no more points can be added, therefore having formed the cluster. After this, DBSCAN assigns the cluster label to each point. Those outside of any cluster are labeled as noise or outliers.</p>
+</section>
+<section id="references" class="level3">
+<h3 class="anchored" data-anchor-id="references">References</h3>
+<ul>
+<li>Demo of DBSCAN clustering algorithm — scikit-learn 1.3.2 documentation</li>
+</ul>
 
 
 </section>
