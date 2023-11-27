@@ -115,7 +115,7 @@ plt.show()
 
 ```
 
-In this example, the dataset is hypothetically assumed to be about geographical music preferences. If it were a real data set, it may have been geographical locations with other features such as tempo, energy level, and beat pattern. DBSCAN identifies clusters of data points that are dense and well connected. The parameters for DBSCAN are "eps" which defines the maximum distance between samples to be considered near another, and "min_samples" which sets the number of samples in a neighborhood for a data point to be considered a core point. Next, DBSCAN will begin with an arbitrary point and expand the cluster by adding nearby points if they are densely packed. It will continue until no more points can be added, therefore having formed the cluster. After this, DBSCAN assigns the cluster label to each point. Those outside of any cluster are labeled as noise or outliers.
+DBSCAN identifies clusters of data points that are dense and well connected. The parameters for DBSCAN are "eps" which defines the maximum distance between samples to be considered near another, and "min_samples" which sets the number of samples in a neighborhood for a data point to be considered a core point. Next, DBSCAN will begin with an arbitrary point and expand the cluster by adding nearby points if they are densely packed. It will continue until no more points can be added, therefore having formed the cluster. After this, DBSCAN assigns the cluster label to each point. Those outside of any cluster are labeled as noise or outliers.
 
 ### References
 
