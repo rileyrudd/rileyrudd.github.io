@@ -9,7 +9,7 @@ website:
 #     - text: Blogs
       - href: blog.qmd
       - text: Resume
-        href: riley-rudd-2023
+        href: https://github.com/rileyrudd/rileyrudd.github.io/blob/main/riley-rudd-2023.pdf  
       - icon: github
         href: https://github.com/rileyrudd
 #     - text: Articles
