@@ -9,7 +9,7 @@ Linear regression, a statistical model, serves as a fundamental tool for compreh
 
 ### Model Training and Fitting
 
-To initiate the process, a training dataset comprising samples is employed. While it's possible to manually calculate the linear regression equation, modern tools like scikit-learn\'s LinearRegression model offer efficient solutions. After fitting the model to the data, predicting the position of a new data point becomes a straightforward task using the predict function.
+To initiate the process, a training dataset comprising samples is employed. While it's possible to manually calculate the linear regression equation, modern tools like scikit-learn's LinearRegression model offer efficient solutions. After fitting the model to the data, predicting the position of a new data point becomes a straightforward task using the predict function.
 
 ### Benefits: Extension, Interpretability, Insight
 
