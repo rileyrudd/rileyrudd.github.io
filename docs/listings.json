@@ -10,6 +10,7 @@
     "listing": "/blog.html",
     "items": [
       "/posts/post4/index.html",
+      "/posts/post5/index.html",
       "/posts/post3/index.html",
       "/posts/post2/index.html",
       "/posts/welcome/index.html"

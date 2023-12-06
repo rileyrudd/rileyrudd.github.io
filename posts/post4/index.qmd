@@ -101,3 +101,9 @@ plt.show()
 print("Confusion Matrix:")
 print(conf_matrix)
 ```
+
+References
+
+[Classification in Machine Learning: A Guide for Beginners \| DataCamp](https://www.datacamp.com/blog/classification-machine-learning)
+
+[Classification in Machine Learning: An Introduction \| Built In](https://builtin.com/machine-learning/classification-machine-learning)
